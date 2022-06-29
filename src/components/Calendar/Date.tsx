@@ -20,9 +20,16 @@ const DateBtn: React.FC<Props> = ({
     const [isPeakDate, setIsPeakDate] = React.useState<boolean>(false);
     const [isInBetween, setIsInBetween] = React.useState<boolean>(false);
 
-    const isBefore = dayjs(dateStr).isBefore(
-        new Date(monthAndYear[1], monthAndYear[0], 1),
-    );
+    /** Find out whether the date is from current month or not */
+    const isDisabledDate =
+        dayjs(dateStr).isBefore(
+            new Date(monthAndYear[1], monthAndYear[0]),
+            "month",
+        ) ||
+        dayjs(dateStr).isAfter(
+            new Date(monthAndYear[1], monthAndYear[0]),
+            "month",
+        );
 
     React.useEffect(() => {
         updatePosition();
@@ -52,7 +59,7 @@ const DateBtn: React.FC<Props> = ({
 
     return (
         <button
-            disabled={isBefore}
+            disabled={isDisabledDate}
             className={`text-sm flex items-end justify-end p-1 h-[60px] border-r-[1px] border-t-[1px] disabled:text-gray-300 
             ${
                 isPeakDate

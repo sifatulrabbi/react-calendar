@@ -27,41 +27,22 @@ const monthNames = [
 ];
 
 const Calendar: React.FC = () => {
-    const [startDate, setStartDate] = React.useState<string>("");
-    const [endDate, setEndDate] = React.useState<string>("");
-    const [isStart, setIsStart] = React.useState<boolean>(true);
-
     const {
         monthAndYear,
         calendarDates,
+        startDate,
+        endDate,
         updateMonthAndYear,
         nextMonth,
         prevMonth,
+        handleSelect,
+        clearSelection,
+        setToday,
     } = useCalendar();
 
     React.useEffect(() => {
         updateMonthAndYear();
     }, []);
-
-    function setToday() {
-        const d = new Date();
-        updateMonthAndYear(d.getMonth(), d.getFullYear());
-    }
-
-    function handleSelect(dateStr: string) {
-        if (isStart) {
-            setStartDate(dateStr);
-            setIsStart(false);
-        } else {
-            setEndDate(dateStr);
-        }
-    }
-
-    function clearSelection() {
-        setStartDate("");
-        setEndDate("");
-        setIsStart(true);
-    }
 
     return (
         <div className="w-max border-[1px] rounded">
