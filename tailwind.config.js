@@ -1,9 +1,9 @@
 module.exports = {
-    content: ["./src/**/*.{tsx,ts,js,jsx}"],
-    darkMode: "class",
-    theme: {
-        fontFamily: {},
-        extend: {},
-    },
-    plugins: [],
+  content: ["./src/**/*.{tsx,ts,js,jsx}"],
+  darkMode: "class",
+  theme: {
+    fontFamily: {},
+    extend: {},
+  },
+  plugins: [],
 };
